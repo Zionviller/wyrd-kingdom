@@ -174,7 +174,7 @@ Camera:
   far clip plane: 5000
   field of view: 40
   orthographic: 1
-  orthographic size: 5.4
+  orthographic size: 2.46
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -237,50 +237,6 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
---- !u!1 &142949709
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 142949711}
-  - component: {fileID: 142949710}
-  m_Layer: 0
-  m_Name: Perlin
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &142949710
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 142949709}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aaede82b55056e04b882522431a0508c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  scale: 1
---- !u!4 &142949711
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 142949709}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 14.468163, y: 15.441701, z: -15.964924}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 5
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &812776454
 GameObject:
   m_ObjectHideFlags: 0
@@ -320,7 +276,7 @@ MonoBehaviour:
   m_Follow: {fileID: 839505991}
   m_Lens:
     FieldOfView: 40
-    OrthographicSize: 5.4
+    OrthographicSize: 2.46
     NearClipPlane: 0.1
     FarClipPlane: 5000
     Dutch: 0
@@ -348,32 +304,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &839505990 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2878959854844202309, guid: 97c63411af120ea4c80e2f8d8c5b0635,
-    type: 3}
-  m_PrefabInstance: {fileID: 2878959855615382787}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &839505991 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2878959854844202308, guid: 97c63411af120ea4c80e2f8d8c5b0635,
     type: 3}
   m_PrefabInstance: {fileID: 2878959855615382787}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &839505993
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 839505990}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 303dcbdcf05de6a4cbeaea3ba18c0b65, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  worldPosition: {x: 0, y: 0, z: 0}
-  moveTime: 0.1
 --- !u!1 &1683858361
 GameObject:
   m_ObjectHideFlags: 3
@@ -567,7 +503,7 @@ PrefabInstance:
     - target: {fileID: 2878959854844202309, guid: 97c63411af120ea4c80e2f8d8c5b0635,
         type: 3}
       propertyPath: m_Name
-      value: TilePlayer
+      value: Player
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 97c63411af120ea4c80e2f8d8c5b0635, type: 3}
@@ -587,6 +523,16 @@ PrefabInstance:
         type: 3}
       propertyPath: height
       value: 200
+      objectReference: {fileID: 0}
+    - target: {fileID: 937290297255236743, guid: 215331e717ba6334091ca1e22f3edcd7,
+        type: 3}
+      propertyPath: worldSize.x
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 937290297255236743, guid: 215331e717ba6334091ca1e22f3edcd7,
+        type: 3}
+      propertyPath: worldSize.y
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 1677088414464737071, guid: 215331e717ba6334091ca1e22f3edcd7,
         type: 3}

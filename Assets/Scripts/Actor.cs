@@ -2,15 +2,23 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Actor : MonoBehaviour
 {
     public Vector3Int worldPosition;
     public float moveTime = 0.25f;
+    public bool playerControlled;
 
     WorldMap map;
 
+    // Animation Vars
     float t = 0.0f;
     Vector3 startPos;
+    SpriteRenderer spriteRenderer;
+
+    private void Awake()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
 
     private void Start()
     {
@@ -19,25 +27,11 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetKeyDown(KeyCode.W))
-        {
-            MoveActor(Vector3Int.up);
-        } else if(Input.GetKeyDown(KeyCode.S))
-        {
-            MoveActor(Vector3Int.down);
-        }else if (Input.GetKeyDown(KeyCode.D))
-        {
-            MoveActor(Vector3Int.right);
-        }
-        else if (Input.GetKeyDown(KeyCode.A))
-        {
-            MoveActor(Vector3Int.left);
-        }
-
         if (t < 1)
         {
             t += Time.deltaTime / moveTime;
-        } else if( t >= 1)
+        }
+        else if (t >= 1)
         {
             t = 1;
         }
@@ -50,10 +44,16 @@ public class Player : MonoBehaviour
         Vector3Int newPos = worldPosition + direction;
         WorldTile targetTile = map.GetTile(newPos);
 
-        if(targetTile.type == TileType.ERROR || targetTile.type == TileType.VOID)
+        if (direction == Vector3Int.left)
+            spriteRenderer.flipX = true;
+        else if (direction == Vector3Int.right)
+            spriteRenderer.flipX = false;
+
+        if (targetTile.type == TileType.ERROR || targetTile.type == TileType.VOID)
         {
             return;
-        } else
+        }
+        else
         {
             worldPosition = newPos;
 

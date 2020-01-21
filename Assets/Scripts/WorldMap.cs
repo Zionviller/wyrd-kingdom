@@ -4,37 +4,59 @@ using UnityEngine;
 
 public class WorldMap : MonoBehaviour
 {
-    public int width, height;
-    public GameObject TilePrefab;
+    [SerializeField]
+    Vector2Int worldSize;
     WorldTile[,] mapData;
+
+    public GameObject TilePrefab;
     GameObject errorTile;
 
     private void Awake()
     {
-        mapData = new WorldTile[,] { };
+
     }
 
     private void Start()
     {
-        GenerateMap();
+
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            GenerateMap();
+        }
     }
 
     public void GenerateMap()
     {
         // Random.InitState(37);
-        ClearMap();
-        mapData = new WorldTile[width, height];
+        // ClearMap(); // TODO: instead of clearing, reuse existing GOs
 
+        if (mapData == null) mapData = new WorldTile[worldSize.x, worldSize.y];
 
-        for(int y = 0; y < height; y++)
+        for (int y = 0; y < worldSize.y; y++)
         {
-            for(int x = 0; x < width; x++)
+            for (int x = 0; x < worldSize.x; x++)
             {
-                GameObject go = Instantiate(TilePrefab, this.transform);
-                go.transform.position = new Vector3(x, y, 0);
+                GameObject go;
+
+                if (!mapData[x, y])
+                {
+                    go = Instantiate(TilePrefab, this.transform);
+                    go.transform.position = new Vector3(x, y, 0);
+
+                }
+                else
+                {
+                    go = mapData[x, y].gameObject;
+
+                }
 
                 WorldTile wt = go.GetComponent<WorldTile>();
-                wt.SetTileType((TileType)Random.Range(0,6));
+                wt.SetTileType((TileType)Random.Range(0, 6));
+                wt.worldPos = new Vector2Int(x, y);
 
                 mapData[x, y] = wt;
             }
@@ -43,12 +65,12 @@ public class WorldMap : MonoBehaviour
 
     void ClearMap()
     {
-        foreach(WorldTile t in mapData)
+        foreach (WorldTile t in mapData)
         {
             Destroy(t.gameObject);
         }
 
-        mapData = new WorldTile[width, height];
+        mapData = new WorldTile[worldSize.x, worldSize.y];
     }
 
     public WorldTile GetTile(Vector3Int tilePos)
@@ -56,9 +78,10 @@ public class WorldMap : MonoBehaviour
         WorldTile tile;
 
         try
-        { 
+        {
             tile = mapData[tilePos.x, tilePos.y];
-        } catch(System.IndexOutOfRangeException)
+        }
+        catch (System.IndexOutOfRangeException)
         {
             if (!errorTile)
             {
@@ -72,5 +95,27 @@ public class WorldMap : MonoBehaviour
 
         if (tile.type != TileType.ERROR) Destroy(errorTile);
         return tile;
+    }
+
+    public List<WorldTile> getTilesOfType(TileType type)
+    {
+        List<WorldTile> tiles = new List<WorldTile>();
+
+        foreach (WorldTile t in mapData)
+        {
+            if (t.type == type)
+            {
+                tiles.Add(t);
+            }
+        }
+
+        return tiles;
+    }
+
+    public WorldTile GetRandomTileOfType(TileType type)
+    {
+        List<WorldTile> tiles = getTilesOfType(type);
+
+        return tiles[Random.Range(0, tiles.Count - 1)];
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WorldTile : MonoBehaviour
 {
-    public int worldX = 0;
+    public Vector2Int worldPos;
     public int worldY = 0;
     public TileType type = TileType.VOID;
 
