@@ -54,16 +54,16 @@ public class WorldMap : MonoBehaviour
             }
         }
 
-        AddItems(200);
+        AddItems(20);
     }
 
     public void AddItems(int num)
     {
-        for(int i = 0; i < num; i++)
+        for (int i = 0; i < num; i++)
         {
             WorldTile tile = GetRandomTileOfType(TileType.GRASS);
             Item newItem = Instantiate(itemPrefab).GetComponent<Item>();
-            tile.AddItem(newItem);                        
+            tile.AddItem(newItem);
         }
     }
 

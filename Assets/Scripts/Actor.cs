@@ -8,6 +8,7 @@ public class Actor : MonoBehaviour
     public Vector3Int worldPosition;
     public float moveTime = 0.25f;
     public bool playerControlled;
+    public Inventory inventory;
 
     public WorldMap map;
 
@@ -19,6 +20,7 @@ public class Actor : MonoBehaviour
     private void Awake()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
+        inventory = GetComponent<Inventory>();
     }
 
     private void Start()
@@ -43,7 +45,7 @@ public class Actor : MonoBehaviour
     {
         worldPosition = newPos;
         transform.position = newPos;
-        
+
     }
 
     public void MoveActor(Vector3Int direction)
@@ -71,6 +73,12 @@ public class Actor : MonoBehaviour
 
     public void PickUpItem()
     {
+        if (inventory == null)
+        {
+            Debug.Log($"{gameObject.name}: No inventory! I ain't picking up shit..");
+            return;
+        }
+
         // TODO: currently destroys all items in position, later move to inventory
         WorldTile currentTile = map.GetTile(worldPosition);
 
@@ -80,13 +88,19 @@ public class Actor : MonoBehaviour
             return;
         }
 
-        string ess = currentTile.items.Count > 1 ? "s" : "";
-        Debug.Log($"Eating {currentTile.items.Count} apple{ess}.");
-        for(int i = currentTile.items.Count - 1; i >= 0; i--)
-        {
-            Item itemToRemove = currentTile.items[i];
-            currentTile.items.Remove(itemToRemove);
-            Destroy(itemToRemove.gameObject);
-        }
+        Item item = currentTile.items[currentTile.items.Count - 1];
+        inventory.AddItem(item);
+        Debug.Log($"Got {item.type}!");
+        currentTile.items.Remove(item);
+        Destroy(item.gameObject);
+
+        //string ess = currentTile.items.Count > 1 ? "s" : "";
+        //Debug.Log($"Eating {currentTile.items.Count} apple{ess}.");
+        //for (int i = currentTile.items.Count - 1; i >= 0; i--)
+        //{
+        //    Item itemToRemove = currentTile.items[i];
+        //    currentTile.items.Remove(itemToRemove);
+        //    Destroy(itemToRemove.gameObject);
+        //}
     }
 }

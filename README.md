@@ -1,16 +1,21 @@
 # Wyrd Kingdom
 
 ## Description
-Wyrd kingdom is a turn based RPG where the player assumes the life of a witch living their life in a magical forest. Currently, no detailed plans for the direction of the game, but it is Roguelike-like-like-like... inspired.
+Wyrd kingdom is a turn based RPG where the player assumes the life of a witch living their life in a magical forest. Currently, no detailed plans for the direction of the game, but it is Roguelike-like-like-like... inspired and may have a Kingdom-like game loop.
 
 ### Controls
-- Press 'R' to Generate and Regenerate a new world map. (Apples will survive the apocalypse..)
+- Press 'R' to to cast World Regeneration spell. (Apples will survive the apocalypse..)
 - Control Player with 'WASD'
-- Eat apples with 'E'
+- Pickup apples with 'E'
+- Check inventory eith 'I'
 
 ## Changelog
+### [0.0.4] - 2020-01-21
+- Created Inventory component
+- Items added to inventory on pickup
+
 ### [0.0.3] - 2020-01-21
-- Added Item Class
+- Created Item component
 - Added simple item spawning
 - Added eating apples
 - Moved some of the game initialization to Game Manager
@@ -25,7 +30,6 @@ Wyrd kingdom is a turn based RPG where the player assumes the life of a witch li
 - Added basic random map generation
 
 ## TODO:
-- Add Items to Inventory
 - Add Item effects
 - Add other Actors. NPCs, Enemies, Animals.. etc.
 - Turn Management

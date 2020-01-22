@@ -31,9 +31,14 @@ public class PlayerController : MonoBehaviour
             actor.MoveActor(Vector3Int.left);
         }
 
-        if(Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E))
         {
             actor.PickUpItem();
+        }
+
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            actor.inventory.PrintInventory();
         }
     }
 }
