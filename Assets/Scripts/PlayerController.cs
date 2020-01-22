@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(Actor))]
 public class PlayerController : MonoBehaviour
 {
-    Actor actor;
+    public Actor actor;
 
     private void Awake()
     {
@@ -31,6 +31,9 @@ public class PlayerController : MonoBehaviour
             actor.MoveActor(Vector3Int.left);
         }
 
-
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+            actor.PickUpItem();
+        }
     }
 }

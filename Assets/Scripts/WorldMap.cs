@@ -8,18 +8,10 @@ public class WorldMap : MonoBehaviour
     Vector2Int worldSize;
     WorldTile[,] mapData;
 
+    public GameObject itemPrefab;
+
     public GameObject TilePrefab;
     GameObject errorTile;
-
-    private void Awake()
-    {
-
-    }
-
-    private void Start()
-    {
-
-    }
 
     private void Update()
     {
@@ -60,6 +52,18 @@ public class WorldMap : MonoBehaviour
 
                 mapData[x, y] = wt;
             }
+        }
+
+        AddItems(200);
+    }
+
+    public void AddItems(int num)
+    {
+        for(int i = 0; i < num; i++)
+        {
+            WorldTile tile = GetRandomTileOfType(TileType.GRASS);
+            Item newItem = Instantiate(itemPrefab).GetComponent<Item>();
+            tile.AddItem(newItem);                        
         }
     }
 

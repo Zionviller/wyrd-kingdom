@@ -8,6 +8,8 @@ public class WorldTile : MonoBehaviour
     public int worldY = 0;
     public TileType type = TileType.VOID;
 
+    public List<Item> items;
+
     public Dictionary<TileType, Color> TileColors = new Dictionary<TileType, Color>
     {
         {TileType.VOID, new Color(0.0f, 0.0f, 0.0f, 0.0f) },
@@ -56,6 +58,13 @@ public class WorldTile : MonoBehaviour
     void UpdateSprite()
     {
         sr.color = TileColors[type];
+    }
+
+    public void AddItem(Item item)
+    {
+        items.Add(item);
+        item.actor.SetPosition((Vector3Int) worldPos);
+        item.gameObject.transform.parent = this.transform;
     }
 }
 

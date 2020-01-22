@@ -15,7 +15,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &2108824628776995068
 Transform:
@@ -43,7 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2325cace27cd9304da7e960e21622205, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  width: 20
-  height: 20
+  worldSize: {x: 10, y: 10}
+  itemPrefab: {fileID: 3013169586518458425, guid: ff3b6fa4909789349b21e220fa08223b,
+    type: 3}
   TilePrefab: {fileID: 7347495483413593207, guid: ca7089d218f4f2949b407ba1ba1ed987,
     type: 3}
