@@ -1,13 +1,13 @@
 # Wyrd Kingdom
 
 ## Description
-Wyrd kingdom is a turn based RPG where the player assumes the life of a witch living their life in a magical forest. Currently, no detailed plans for the direction of the game, but it is Roguelike-like-like-like... inspired and may have a Kingdom-like game loop.
+Wyrd kingdom is a turn based RPG where the player assumes the life of a witch living their life in a magical forest. Currently, no detailed plans for the direction of the game, but it is Roguelike-like-like-like inspired and may have a Kingdom-like game loop.
 
 ### Controls
 - Press 'R' to to cast World Regeneration spell. (Apples will survive the apocalypse..)
 - Control Player with 'WASD'
 - Pickup apples with 'E'
-- Check inventory eith 'I'
+- Check inventory with 'I'
 
 ## Changelog
 ### [0.0.4] - 2020-01-21
