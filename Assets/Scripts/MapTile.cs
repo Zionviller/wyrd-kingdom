@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WorldTile : MonoBehaviour
+public class MapTile : MonoBehaviour
 {
     public Vector2Int worldPos;
-    public int worldY = 0;
     public TileType type = TileType.VOID;
 
     public List<Item> items;
+    public Prop prop;
+    public Actor actor;
 
     public Dictionary<TileType, Color> TileColors = new Dictionary<TileType, Color>
     {
@@ -63,7 +64,7 @@ public class WorldTile : MonoBehaviour
     public void AddItem(Item item)
     {
         items.Add(item);
-        item.actor.SetPosition((Vector3Int) worldPos);
+        item.actor.SetPosition((Vector3Int)worldPos);
         item.gameObject.transform.parent = this.transform;
     }
 }

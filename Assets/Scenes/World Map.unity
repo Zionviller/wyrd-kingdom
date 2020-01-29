@@ -423,6 +423,7 @@ MonoBehaviour:
   playerPrefab: {fileID: 2878959854844202309, guid: 97c63411af120ea4c80e2f8d8c5b0635,
     type: 3}
   vcam: {fileID: 812776455}
+  mapSize: {x: 10, y: 10}
 --- !u!4 &1749247760
 Transform:
   m_ObjectHideFlags: 0

@@ -10,7 +10,7 @@ public class Actor : MonoBehaviour
     public bool playerControlled;
     public Inventory inventory;
 
-    public WorldMap map;
+    public MapView map;
 
     // Animation Vars
     float t = 1.0f;
@@ -51,7 +51,7 @@ public class Actor : MonoBehaviour
     public void MoveActor(Vector3Int direction)
     {
         Vector3Int newPos = worldPosition + direction;
-        WorldTile targetTile = map.GetTile(newPos);
+        MapTile targetTile = map.GetTile(newPos);
 
         if (direction == Vector3Int.left)
             spriteRenderer.flipX = true;
@@ -80,7 +80,7 @@ public class Actor : MonoBehaviour
         }
 
         // TODO: currently destroys all items in position, later move to inventory
-        WorldTile currentTile = map.GetTile(worldPosition);
+        MapTile currentTile = map.GetTile(worldPosition);
 
         if (currentTile.items.Count == 0)
         {

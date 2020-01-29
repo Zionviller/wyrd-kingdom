@@ -10,6 +10,11 @@ Wyrd kingdom is a turn based RPG where the player assumes the life of a witch li
 - Check inventory with 'I'
 
 ## Changelog
+### [0.0.5] - 2020-01-29
+- Separated Random map generation from map view generation
+- Added prop field to tiles
+- Reworked tile gameobject instantiation to operate as a pool (probably a waste of time as map sizes arent changed/generated often)
+
 ### [0.0.4] - 2020-01-21
 - Created Inventory component
 - Items added to inventory on pickup
@@ -32,5 +37,6 @@ Wyrd kingdom is a turn based RPG where the player assumes the life of a witch li
 ## TODO:
 - Add Item effects
 - Add other Actors. NPCs, Enemies, Animals.. etc.
+- Separate map data from map display gameobject
 - Turn Management
 - Make map generation look more natural. Coasts, clumps of trees, rivers, etc.
