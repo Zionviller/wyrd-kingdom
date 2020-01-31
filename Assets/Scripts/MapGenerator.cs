@@ -4,9 +4,9 @@ using UnityEngine;
 
 public static class MapGenerator
 {
-    public static TileType[,] RandomMap(Vector2Int mapSize, int seed = 37)
+    public static TileType[,] RandomMap(Vector2Int mapSize)
     {
-        Random.InitState(seed);
+        // Random.InitState(seed); // Maybe roll my own PRNG?
         TileType[,] newMapData = new TileType[mapSize.x, mapSize.y];
 
         for (int y = 0; y < mapSize.y; y++)
@@ -19,4 +19,20 @@ public static class MapGenerator
 
         return newMapData;
     }
+
+    public static TileType[,] SolidMap(TileType type, Vector2Int mapSize)
+    {
+        TileType[,] newMapData = new TileType[mapSize.x, mapSize.y];
+
+        for (int y = 0; y < mapSize.y; y++)
+        {
+            for (int x = 0; x < mapSize.x; x++)
+            {
+                newMapData[x, y] = type;
+            }
+        }
+
+        return newMapData;
+    }
+
 }

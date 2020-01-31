@@ -10,7 +10,7 @@ public class Actor : MonoBehaviour
     public bool playerControlled;
     public Inventory inventory;
 
-    public MapView map;
+    public GameMap map;
 
     // Animation Vars
     float t = 1.0f;

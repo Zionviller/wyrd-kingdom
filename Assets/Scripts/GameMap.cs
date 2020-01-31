@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MapView : MonoBehaviour
+public class GameMap : MonoBehaviour
 {
     Vector2Int mapSize;
     List<MapTile> tilePool;
     MapTile[,] tileMap;
+    TileType[,] mapData;
 
-    public GameObject itemPrefab;
+    public GameObject applePrefab;
 
     public GameObject tilePrefab;
     GameObject errorTile;
@@ -20,15 +21,16 @@ public class MapView : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            GenerateMapView(mapSize);
-        }
+
     }
 
-    public void GenerateMapView(Vector2Int mapSize)
+    public void UpdateMapView()
     {
-        this.mapSize = mapSize;
+        if (mapData == null)
+        {
+            Debug.LogError("Cannot update map. There is no map data.");
+            return;
+        }
 
         tileMap = new MapTile[mapSize.x, mapSize.y];
 
@@ -46,21 +48,19 @@ public class MapView : MonoBehaviour
             }
             else
             {
-                for (int i = -1; i >= delta; i--)
+                for (int i = 0; i > delta; i--)
                 {
-                    tilePool[tilePool.Count + i].gameObject.SetActive(false);
+                    tilePool[tilePool.Count + i - 1].gameObject.SetActive(false);
                 }
             }
         }
-
-        TileType[,] data = MapGenerator.RandomMap(mapSize);
 
         for (int y = 0; y < mapSize.y; y++)
         {
             for (int x = 0; x < mapSize.x; x++)
             {
                 tileMap[x, y] = tilePool[x + (y * mapSize.x)];
-                tileMap[x, y].SetTileType(data[x, y]);
+                tileMap[x, y].SetTileType(mapData[x, y]);
                 tileMap[x, y].worldPos = new Vector2Int(x, y);
 
                 GameObject tileGO = tileMap[x, y].gameObject;
@@ -71,25 +71,32 @@ public class MapView : MonoBehaviour
     }
 
     // TODO: Fix Adding Items
-    public void AddItems(int num)
+    //public void AddItems(int num)
+    //{
+    //    for (int i = 0; i < num; i++)
+    //    {
+    //        MapTile tile = GetRandomTileOfType(TileType.GRASS);
+    //        Item newItem = Instantiate(itemPrefab).GetComponent<Item>();
+    //        tile.AddItem(newItem);
+    //    }
+    //}
+
+    public void SetTileData(TileType[,] data)
     {
-        for (int i = 0; i < num; i++)
-        {
-            MapTile tile = GetRandomTileOfType(TileType.GRASS);
-            Item newItem = Instantiate(itemPrefab).GetComponent<Item>();
-            tile.AddItem(newItem);
-        }
+        mapData = data;
+        mapSize = new Vector2Int(data.GetLength(0), data.GetLength(1));
+        UpdateMapView();
     }
 
-    void ClearMap()
-    {
-        foreach (MapTile t in tileMap)
-        {
-            Destroy(t.gameObject);
-        }
+    //void ClearMap()
+    //{
+    //    foreach (MapTile t in tileMap)
+    //    {
+    //        Destroy(t.gameObject);
+    //    }
 
-        tileMap = new MapTile[mapSize.x, mapSize.y];
-    }
+    //    tileMap = new MapTile[mapSize.x, mapSize.y];
+    //}
 
     public MapTile GetTile(Vector3Int tilePos)
     {
@@ -130,10 +137,30 @@ public class MapView : MonoBehaviour
         return tiles;
     }
 
+    public MapTile GetRandomTile()
+    {
+        // TODO: There will be wierdness if all tiles are inactive.
+        MapTile tile;
+        do
+        {
+            tile = tilePool[Random.Range(0, tilePool.Count - 1)];
+        } while (!tile.gameObject.activeSelf);
+        return tile;
+    }
+
     public MapTile GetRandomTileOfType(TileType type)
     {
         List<MapTile> tiles = getTilesOfType(type);
 
         return tiles[Random.Range(0, tiles.Count - 1)];
+    }
+
+    public void GrowApples(int count = 20)
+    {
+        for (int i = 0; i < count; i++)
+        {
+            MapTile tile = GetRandomTile();
+            tile.AddItem(Instantiate(applePrefab).GetComponent<Item>());
+        }
     }
 }

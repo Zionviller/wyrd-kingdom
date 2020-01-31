@@ -35,11 +35,6 @@ public class MapTile : MonoBehaviour
         UpdateSprite();
     }
 
-    //private void OnValidate()
-    //{
-    //    UpdateSprite();
-    //}
-
     public TileType GetTileType()
     {
         return type;

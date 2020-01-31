@@ -43,8 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2325cace27cd9304da7e960e21622205, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapSize: {x: 0, y: 0}
-  itemPrefab: {fileID: 3013169586518458425, guid: ff3b6fa4909789349b21e220fa08223b,
+  applePrefab: {fileID: 3013169586518458425, guid: ff3b6fa4909789349b21e220fa08223b,
     type: 3}
   tilePrefab: {fileID: 7347495483413593207, guid: ca7089d218f4f2949b407ba1ba1ed987,
     type: 3}
